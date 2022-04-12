@@ -33,6 +33,10 @@ export default function Users() {
             )
     }
 
+    const UserUpdate = id => {
+        window.location= '/update/' + id
+    }
+
     const UserDelete = id => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -108,11 +112,12 @@ export default function Users() {
                                         <TableCell align="right">{row.username}</TableCell>
                                         <TableCell align="right">
                                             <ButtonGroup variant="outlined" aria-label="outlined button group">
-                                                <Button>EDIT</Button>
+                                                <Button onClick={ () =>
+                                                UserUpdate(row.id)
+                                                }>EDIT</Button>
                                                 <Button onClick={ () =>
                                                 UserDelete(row.id)
                                                 }>DELETE</Button>
-                                                <Button>UPDATE</Button>
                                             </ButtonGroup>
                                         </TableCell>
                                     </TableRow>
