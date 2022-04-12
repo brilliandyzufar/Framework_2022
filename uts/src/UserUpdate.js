@@ -3,7 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { Grid, TextField, Button, Typography, Avatar } from '@mui/material';
 
-export default function UserCreate() {
+export default function UserUpdate() {
     const handleSubmit = event => {
         event.preventDefault();
         var myHeaders = new Headers();
@@ -44,7 +44,7 @@ export default function UserCreate() {
             <CssBaseline />
             <Container maxWidth="sm" sx={{ p: 2 }}>
                 <Typography variant="h6" gutterBottom component="div">
-                    Create Users
+                    Update User
                 </Typography>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
