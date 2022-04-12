@@ -13,19 +13,55 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Avatar from '@mui/material/Avatar';
 import Link from '@mui/material/Link';
+import { ButtonGroup } from '@mui/material';
+import { unstable_createGetCssVar } from '@mui/system';
 
 export default function Users() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
+        UserGet()
+    }, [])
+
+    const UserGet = () => {
         fetch("https://www.mecallapi.com/api/users")
-            .then(res => res.json())
+             .then(res => res.json())
             .then(
                 (result) => {
                     setItems(result);
                 }
             )
-    }, [])
+    }
+
+    const UserUpdate = id => {
+        window.location= '/update/' + id
+    }
+
+    const UserDelete = id => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        
+        var raw = JSON.stringify({
+          "id": id
+        });
+        
+        var requestOptions = {
+          method: 'DELETE',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+        
+        fetch("https://www.mecallapi.com/api/users/delete", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+              alert(result['message'])
+              if(result['status'] === 'ok') {
+                UserGet()
+            }
+          })
+          .catch(error => console.log('error', error));  
+    }
 
     return (
         <React.Fragment>
@@ -40,8 +76,8 @@ export default function Users() {
                         </Box>
                         <Box>
                             <Link href="create">
-                            <Button variant="contained">CREATE</Button>
-                        </Link>
+                                <Button variant="contained">CREATE</Button>
+                            </Link>
                         </Box>
                     </Box>
 
@@ -74,7 +110,16 @@ export default function Users() {
                                         <TableCell align="right">{row.fname}</TableCell>
                                         <TableCell align="right">{row.lname}</TableCell>
                                         <TableCell align="right">{row.username}</TableCell>
-                                        <TableCell align="right"></TableCell>
+                                        <TableCell align="right">
+                                            <ButtonGroup variant="outlined" aria-label="outlined button group">
+                                                <Button onClick={ () =>
+                                                UserUpdate(row.id)
+                                                }>EDIT</Button>
+                                                <Button onClick={ () =>
+                                                UserDelete(row.id)
+                                                }>DELETE</Button>
+                                            </ButtonGroup>
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
