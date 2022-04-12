@@ -1,0 +1,7 @@
+{
+    "editor.guides.bracketPairsHorizontal": "active",
+    "editor.colorDecorators": true,
+    // "editor.bracketPairColorization.enabled": true,
+    "workbench.colorCustomizations": {
+    }
+}
