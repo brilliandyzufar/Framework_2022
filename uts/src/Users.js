@@ -33,6 +33,13 @@ export default function Users() {
             )
     }
 
+<<<<<<< HEAD
+=======
+    const UserUpdate = id => {
+        window.location= '/update/' + id
+    }
+
+>>>>>>> ca088d206493310c8ab97a94e8873c0951c42728
     const UserDelete = id => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -52,7 +59,11 @@ export default function Users() {
           .then(response => response.json())
           .then(result => {
               alert(result['message'])
+<<<<<<< HEAD
               if(result['ststus'] === 'ok') {
+=======
+              if(result['status'] === 'ok') {
+>>>>>>> ca088d206493310c8ab97a94e8873c0951c42728
                 UserGet()
             }
           })
@@ -108,11 +119,20 @@ export default function Users() {
                                         <TableCell align="right">{row.username}</TableCell>
                                         <TableCell align="right">
                                             <ButtonGroup variant="outlined" aria-label="outlined button group">
+<<<<<<< HEAD
                                                 <Button>EDIT</Button>
                                                 <Button onClick={ () =>
                                                 UserDelete(row.id)
                                                 }>DELETE</Button>
                                                 <Button>UPDATE</Button>
+=======
+                                                <Button onClick={ () =>
+                                                UserUpdate(row.id)
+                                                }>EDIT</Button>
+                                                <Button onClick={ () =>
+                                                UserDelete(row.id)
+                                                }>DELETE</Button>
+>>>>>>> ca088d206493310c8ab97a94e8873c0951c42728
                                             </ButtonGroup>
                                         </TableCell>
                                     </TableRow>
